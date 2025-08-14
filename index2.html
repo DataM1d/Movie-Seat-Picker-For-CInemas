@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Picker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app">
+    <div class="toolbar">
+      <h1>🎬 Cinema Seat Picker</h1>
+      <button id="themeToggle" class="btn-ghost" aria-pressed="false" title="Toggle theme">🌓 Theme</button>
+      <div class="summary">
+        <div>Seats: <span id="count">0</span></div>
+        <div>Total: <span id="total">$0.00</span></div>
+      </div>
+    </div>
+
+    <section class="card">
+      <label class="sr-only" for="movie">Choose movie</label>
+      <div class="controls">
+        <select id="movie" aria-label="Select a movie">
+          <option value="12">Interstellar — $12</option>
+          <option value="10">Spirited Away — $10</option>
+          <option value="8">The Iron Giant — $8</option>
+          <option value="14">Dune — $14</option>
+        </select>
+
+        <button id="clear" class="btn-danger" title="Clear selection">Clear All</button>
+      </div>
+
+      <div class="legend">
+        <div><span class="dot"></span> Available</div>
+        <div><span class="dot selected"></span> Selected</div>
+        <div><span class="dot occupied"></span> Occupied</div>
+      </div>
+
+      <div class="screen"></div>
+
+      <!-- Seat map -->
+      <div class="container" id="container" tabindex="grid" aria-label="Seat map">
+        <!-- 6 rows × 8 seats = 48 seats (A–F, 1–8). Some start as occupied. -->
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="A1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="A2" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="A3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="A4" tabindex="treegrid"></div>
+          <div class="seat" data-seat="A5" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="A6" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="A7" tabindex="treegrid"></div>
+          <div class="seat" data-seat="A8" tabindex="treegrid" tabindex="0"></div>
+        </div>
+
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="B1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="B2" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="B3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="B4" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="B5" tabindex="treegrid"></div>
+          <div class="seat" data-seat="B6" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="B7" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="B8" tabindex="treegrid" tabindex="0"></div>
+        </div>
+
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="C1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="C2" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="C3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="C4" tabindex="treegrid"></div>
+          <div class="seat" data-seat="C5" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="C6" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="C7" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="C8" tabindex="treegrid" tabindex="0"></div>
+        </div>
+
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="D1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="D2" tabindex="treegrid"></div>
+          <div class="seat" data-seat="D3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="D4" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="D5" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="D6" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="D7" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="D8" tabindex="treegrid" tabindex="0"></div>
+        </div>
+
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="E1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="E2" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="E3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="E4" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="E5" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="E6" tabindex="treegrid"></div>
+          <div class="seat" data-seat="E7" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="E8" tabindex="treegrid" tabindex="0"></div>
+        </div>
+
+        <div class="row" tabindex="row">
+          <div class="seat" data-seat="F1" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F2" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F3" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F4" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F5" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F6" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat" data-seat="F7" tabindex="treegrid" tabindex="0"></div>
+          <div class="seat occupied" data-seat="F8" tabindex="treegrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
